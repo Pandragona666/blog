@@ -16,16 +16,23 @@
                            driver="com.mysql.cj.jdbc.Driver"
                            url="jdbc:mysql://localhost:3306/blog?serverTimezone=UTC"
                            user="root"
-                           password="Sm0cz0J3st"/>
-        <sql:query var="articles" sql="SELECT * FROM article"/>
+                           password="Sm0cz0J3st">
+        </sql:setDataSource>
+        <sql:query var="articles" dataSource="${baza}">
+            SELECT * FROM article
+        </sql:query>
         <table>
             <tr>
                 <th>
                     Tytuł
                 </th>
             </tr>
-            <c:forEach var="article" items="${articles}">
-                <a href="/blog_war/article?id=${article.id}">${article.title}</a>
+            <c:forEach var="article" items="${articles.rows}">
+                <tr>
+                    <td>
+                        <a href="/blog_war/article?id=${article.id}">${article.title}</a>
+                    </td>
+                </tr>
             </c:forEach>
         </table>
 
