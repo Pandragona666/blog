@@ -32,8 +32,19 @@ public class ArticleServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher rd = req.getRequestDispatcher("add_article.jsp");
-        rd.forward(req,resp);
+        String action = req.getParameter("action");
+        switch (action){
+            case "viewAll":{
+                req.setAttribute("articles", repo.getAll().asJava());
+                RequestDispatcher rd = req.getRequestDispatcher("view_articles.jsp");
+                rd.forward(req, resp);
+                }
+                break;
+            case "add": {
+                RequestDispatcher rd = req.getRequestDispatcher("add_article.jsp");
+                rd.forward(req, resp);
+            }
+        }
     }
 
     @Override

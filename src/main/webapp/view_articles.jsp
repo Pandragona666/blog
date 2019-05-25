@@ -12,22 +12,25 @@
 <%@ include file="head.jspf"%>
 <body>
     <div class = "container">
-        <sql:setDataSource var="baza"
+        <%--<sql:setDataSource var="baza"
                            driver="com.mysql.cj.jdbc.Driver"
                            url="jdbc:mysql://localhost:3306/blog?serverTimezone=UTC"
                            user="root"
-                           password="Sm0cz0J3st">
-        </sql:setDataSource>
-        <sql:query var="articles" dataSource="${baza}">
+                           password="Sm0cz0J3st"/>
+
+        <sql:query var="articles" dataSource ="${baza}">
             SELECT * FROM article
         </sql:query>
+        --%>
+
+
         <table>
             <tr>
                 <th>
                     Tytuł
                 </th>
             </tr>
-            <c:forEach var="article" items="${articles.rows}">
+            <c:forEach var="article" items="${requestScope.articles}">
                 <tr>
                     <td>
                         <a href="/blog_war/article?id=${article.id}">${article.title}</a>
