@@ -1,17 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: korda
-  Date: 25.05.2019
-  Time: 13:07
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <%@ include file="head.jspf"%>
 <body>
-    <h1>
-        Dodaj artykuł do bloga
-    </h1>
+    <div>
+        <h1>
+            Dodaj artykuł do bloga
+        </h1>
+    </div>
     <div class="container col-6">
         <form action="/blog_war/article?action=add" method="post">
             <div class="form-group">

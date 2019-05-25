@@ -26,7 +26,10 @@ public class ArticleDaoJPA implements Dao<Article, NewArticle> {
 
     @Override
     public Article get(long id) {
-        throw new UnsupportedOperationException();
+        em.getTransaction().begin();
+        ArticleEntity ae = (ArticleEntity) em.createQuery("SELECT ae FROM ArticleEntity ae WHERE id =" + id).getSingleResult();
+        em.getTransaction().commit();
+        return new Article(ae);
     }
 
     @Override

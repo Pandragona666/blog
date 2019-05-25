@@ -20,4 +20,8 @@ public class ArticleRepository {
     public List<Article> getAll(){
         return dao.getAll();
     }
+
+    public Article get(long id){
+        return dao.get(id);
+    }
 }

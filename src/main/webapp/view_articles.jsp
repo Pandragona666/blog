@@ -33,7 +33,7 @@
             <c:forEach var="article" items="${requestScope.articles}">
                 <tr>
                     <td>
-                        <a href="/blog_war/article?id=${article.id}">${article.title}</a>
+                        <a href="/blog_war/article?action=view&id=${article.id}">${article.title}</a>
                     </td>
                 </tr>
             </c:forEach>
