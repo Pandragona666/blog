@@ -1,6 +1,7 @@
 package entity;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class ArticleEntity {
@@ -11,11 +12,22 @@ public class ArticleEntity {
     private long id;
     private String content;
 
+    private String title;
+
+    private LocalDateTime created;
+
     public ArticleEntity() {
     }
 
     public ArticleEntity(String content) {
         this.content = content;
+        this.created = LocalDateTime.now();
+    }
+
+    public ArticleEntity(NewArticle newArticle){
+        this.content = newArticle.content;
+        this.title = newArticle.title;
+        this.created = LocalDateTime.now();
     }
 
     public long getId() {
@@ -32,5 +44,21 @@ public class ArticleEntity {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
     }
 }
