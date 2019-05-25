@@ -58,6 +58,11 @@ public class ArticleServlet extends HttpServlet {
                 RequestDispatcher rd = req.getRequestDispatcher("add_article.jsp");
                 rd.forward(req, resp);
             }
+            break;
+            case "index": {
+                RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
+                rd.forward(req, resp);
+            }
         }
     }
 
@@ -73,10 +78,6 @@ public class ArticleServlet extends HttpServlet {
                 rd.forward(req, resp);
             }
             break;
-            case "goToIndex": {
-                RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
-                rd.forward(req, resp);
-            }
         }
     }
 }

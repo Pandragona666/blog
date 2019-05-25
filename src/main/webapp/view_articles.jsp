@@ -11,6 +11,9 @@
 <html>
 <%@ include file="head.jspf"%>
 <body>
+    <div class="container col-6">
+        <a href="article?action=index">Main</a>
+    </div>
     <div class = "container">
         <%--<sql:setDataSource var="baza"
                            driver="com.mysql.cj.jdbc.Driver"

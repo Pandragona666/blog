@@ -16,5 +16,8 @@
             </div>
         </form>
     </div>
+    <div class="container col-6">
+        <a href="article?action=index">Main</a>
+    </div>
 </body>
 </html>
