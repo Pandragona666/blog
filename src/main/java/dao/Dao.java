@@ -1,4 +1,5 @@
 package dao;
+
 import io.vavr.collection.List;
 
 public interface Dao<T, U> {

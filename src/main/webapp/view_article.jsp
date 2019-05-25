@@ -10,7 +10,7 @@
             ${requestScope.article.content}
         </p>
     </div>
-    <div>
+    <div class="container col-6">
         <a href="article?action=index">Main</a>
     </div>
 </body>

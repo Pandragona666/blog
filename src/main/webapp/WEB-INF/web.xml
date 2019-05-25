@@ -9,5 +9,5 @@
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
         id="Your_WebApp_ID"
         version="2.5">
-  <display-name>Projekt z zajęć Servlety i JSP</display-name>
+  <display-name>Project Blog</display-name>
 </web-app>

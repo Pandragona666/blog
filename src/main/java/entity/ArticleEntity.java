@@ -24,7 +24,7 @@ public class ArticleEntity {
         this.created = LocalDateTime.now();
     }
 
-    public ArticleEntity(NewArticle newArticle){
+    public ArticleEntity(NewArticle newArticle) {
         this.content = newArticle.content;
         this.title = newArticle.title;
         this.created = LocalDateTime.now();

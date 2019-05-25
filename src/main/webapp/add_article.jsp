@@ -2,7 +2,7 @@
 <html>
 <%@ include file="head.jspf"%>
 <body>
-    <div>
+    <div class="container col-6">
         <h1>
             Dodaj artykuł do bloga
         </h1>

@@ -3,7 +3,9 @@
 <%@ include file="head.jspf"%>
 <body>
 <h2>Hello World!</h2>
-<a href="article?action=viewAll">Lista artykułów</a>
-<a href="article?action=add">Dodaj</a>
+<nav>
+    <a href="article?action=viewAll">Lista artykułów</a>
+    <a href="article?action=add">Dodaj</a>
+</nav>
 </body>
 </html>

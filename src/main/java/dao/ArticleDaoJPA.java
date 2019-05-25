@@ -4,6 +4,7 @@ import entity.Article;
 import entity.ArticleEntity;
 import entity.NewArticle;
 import io.vavr.collection.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -35,7 +36,6 @@ public class ArticleDaoJPA implements Dao<Article, NewArticle> {
         em.getTransaction().begin();
         em.persist(articleEntity);
         em.getTransaction().commit();
-
     }
 
     @Override
@@ -51,7 +51,7 @@ public class ArticleDaoJPA implements Dao<Article, NewArticle> {
         throw new UnsupportedOperationException();
     }
 
-    private ArticleEntity getEntity(long id){
+    private ArticleEntity getEntity(long id) {
         em.getTransaction().begin();
         ArticleEntity ae = (ArticleEntity) em.createQuery("SELECT ae FROM ArticleEntity ae WHERE id =" + id).getSingleResult();
         em.getTransaction().commit();

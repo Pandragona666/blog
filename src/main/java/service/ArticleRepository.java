@@ -13,19 +13,19 @@ public class ArticleRepository {
         this.dao = dao;
     }
 
-    public void addArticle(NewArticle newArticle){
+    public void addArticle(NewArticle newArticle) {
         dao.save(newArticle);
     }
 
-    public List<Article> getAll(){
+    public List<Article> getAll() {
         return dao.getAll();
     }
 
-    public Article get(long id){
+    public Article get(long id) {
         return dao.get(id);
     }
 
-    public void remove(long id){
+    public void remove(long id) {
         dao.delete(id);
     }
 }
