@@ -30,6 +30,13 @@ public class ArticleEntity {
         this.created = LocalDateTime.now();
     }
 
+    public ArticleEntity(Article article) {
+        this.id = article.id;
+        this.content = article.content;
+        this.title = article.title;
+        this.created = article.created;
+    }
+
     public long getId() {
         return id;
     }

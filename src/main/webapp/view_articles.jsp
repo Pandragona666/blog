@@ -35,6 +35,9 @@
                     <td>
                         <a href="/blog_war/article?action=view&id=${article.id}">${article.title}</a>
                     </td>
+                    <td>
+                        <a href = "/blog_war/article?action=delete&id=${article.id}">Delete</a>
+                    </td>
                 </tr>
             </c:forEach>
         </table>

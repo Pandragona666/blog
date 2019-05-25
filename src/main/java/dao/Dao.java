@@ -9,8 +9,8 @@ public interface Dao<T, U> {
 
     void save(U obj); //ponieważ zapisujey tylko raz, artykuł który nie ma jeszcze id, wiec używamy "U"
 
-    void delete(T obj);
+    void delete(long id);
 
-    void update(T obj);
+    void update(long id);
 
 }

@@ -24,4 +24,8 @@ public class ArticleRepository {
     public Article get(long id){
         return dao.get(id);
     }
+
+    public void remove(long id){
+        dao.delete(id);
+    }
 }
