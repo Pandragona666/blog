@@ -42,8 +42,9 @@ public class ArticleServlet extends HttpServlet {
             }
             break;
             case "view": {
-                long id = Long.parseLong(req.getParameter("id"));
-                req.setAttribute("article", repo.get(id));
+                Parse.parseLong(req.getParameter("id"))
+                        .ifPresent(id -> repo.get(id)
+                                .ifPresent(a -> req.setAttribute("article", a)));
                 RequestDispatcher rd = req.getRequestDispatcher("view_article.jsp");
                 rd.forward(req, resp);
             }

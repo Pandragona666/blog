@@ -7,6 +7,7 @@ import io.vavr.collection.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.util.Optional;
 
 public class ArticleDaoJPA implements Dao<Article, NewArticle> {
 
@@ -26,8 +27,8 @@ public class ArticleDaoJPA implements Dao<Article, NewArticle> {
     }
 
     @Override
-    public Article get(long id) {
-        return new Article(getEntity(id));
+    public Optional<Article> get(long id) {
+        return getEntity((id)).map(a -> new Article(a));
     }
 
     @Override
@@ -40,10 +41,11 @@ public class ArticleDaoJPA implements Dao<Article, NewArticle> {
 
     @Override
     public void delete(long id) {
-        ArticleEntity ae = getEntity((id));
-        em.getTransaction().begin();
-        em.remove(ae);
-        em.getTransaction().commit();
+        getEntity(id).ifPresent(a -> {
+            em.getTransaction().begin();
+            em.remove(a);
+            em.getTransaction().commit();
+        });
     }
 
     @Override
@@ -51,10 +53,20 @@ public class ArticleDaoJPA implements Dao<Article, NewArticle> {
         throw new UnsupportedOperationException();
     }
 
-    private ArticleEntity getEntity(long id) {
-        em.getTransaction().begin();
-        ArticleEntity ae = (ArticleEntity) em.createQuery("SELECT ae FROM ArticleEntity ae WHERE id =" + id).getSingleResult();
-        em.getTransaction().commit();
-        return ae;
+    private Optional<ArticleEntity> getEntity(long id) {
+//        em.getTransaction().begin();
+        try {
+            return Optional.of((ArticleEntity) em
+                    .createQuery("SELECT a FROM ArticleEntity a WHERE id = :id")
+                    .setParameter("id",id)
+                    .getSingleResult());
+        } catch (Exception e){
+            return Optional.empty();
+        }
+//        ArticleEntity ae = (ArticleEntity) em
+//                .createQuery("SELECT ae FROM ArticleEntity ae WHERE id =" + id)
+//                .getSingleResult();
+        // rezugnujemy z transakcji - usuwamy begin i commit!
+//        em.getTransaction().commit();
     }
 }

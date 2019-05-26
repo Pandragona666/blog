@@ -7,6 +7,9 @@
             ${requestScope.article.title}
         </h1>
         <p>
+            ${requestScope.article.created}
+        </p>
+        <p>
             ${requestScope.article.content}
         </p>
     </div>
