@@ -14,6 +14,6 @@ public interface Dao<T, U> {
 
     void delete(long id);
 
-    void update(long id);
+    void update(T obj);
 
 }

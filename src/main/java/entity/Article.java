@@ -7,7 +7,7 @@ public class Article extends NewArticle{
     public long id;
     public LocalDateTime created;
 
-    public Article(String content, String title, long id, LocalDateTime created) {
+    public Article(long id, String title, String content, LocalDateTime created) {
         super(content, title);
         this.id = id;
         this.created = created;

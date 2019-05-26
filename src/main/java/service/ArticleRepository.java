@@ -30,4 +30,10 @@ public class ArticleRepository {
     public void remove(long id) {
         dao.delete(id);
     }
+
+    public void changeTitle(long id, String title){
+        dao.get(id)
+                .map(old -> new Article(old.id, title, old.content, old.created))
+                .ifPresent(dao::update);
+    }
 }

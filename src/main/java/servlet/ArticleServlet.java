@@ -66,6 +66,16 @@ public class ArticleServlet extends HttpServlet {
                 RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
                 rd.forward(req, resp);
             }
+            break;
+            case "update": {
+                Parse.parseLong(req.getParameter("id"))
+                        .ifPresent(id -> repo.get(id)
+                        .ifPresent(a -> {
+                            req.setAttribute("article", a);
+                        }));
+                RequestDispatcher rd = req.getRequestDispatcher("update_article.jsp");
+                rd.forward(req,resp);
+            }
         }
     }
 
@@ -80,6 +90,12 @@ public class ArticleServlet extends HttpServlet {
                 resp.sendRedirect("article?action=viewAll");
             }
             break;
+            case "update": {
+                String title = Encoding.encode(req.getParameter("title"));
+                Parse.parseLong(req.getParameter("id"))
+                        .ifPresent(id -> repo.changeTitle(id, title));
+                resp.sendRedirect("article?action=viewAll");
+            }
         }
     }
 }

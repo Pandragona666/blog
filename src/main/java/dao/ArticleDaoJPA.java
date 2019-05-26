@@ -49,8 +49,16 @@ public class ArticleDaoJPA implements Dao<Article, NewArticle> {
     }
 
     @Override
-    public void update(long id) {
-        throw new UnsupportedOperationException();
+    public void update(Article obj) {
+        getEntity(obj.id).map(article -> {
+            article.setTitle(obj.title);
+            article.setContent(obj.content);
+            return article;
+        }).ifPresent(article -> {
+            em.getTransaction().begin();
+            em.persist(article);
+            em.getTransaction().commit();
+        });
     }
 
     private Optional<ArticleEntity> getEntity(long id) {
