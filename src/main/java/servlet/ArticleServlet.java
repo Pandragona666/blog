@@ -75,8 +75,7 @@ public class ArticleServlet extends HttpServlet {
                 String title = Encoding.encode(req.getParameter("title"));
                 String content = Encoding.encode(req.getParameter("content"));
                 repo.addArticle(new NewArticle(content, title));
-                RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
-                rd.forward(req, resp);
+                resp.sendRedirect("article?action=viewAll");
             }
             break;
         }
