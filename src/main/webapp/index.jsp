@@ -6,6 +6,8 @@
 <nav>
     <a href="article?action=viewAll">Lista artykułów</a>
     <a href="article?action=add">Dodaj</a>
+    <a href="user?action=add">Zarejestruj się</a>
+    <a href="user?action=viewAll">Użytkownicy</a>
 </nav>
 </body>
 </html>
