@@ -4,6 +4,7 @@ import dao.ArticleDaoJPA;
 import entity.Article;
 import entity.ArticleEntity;
 import entity.NewArticle;
+import helper.Encoding;
 import io.vavr.collection.List;
 import service.ArticleRepository;
 
@@ -71,8 +72,8 @@ public class ArticleServlet extends HttpServlet {
         String action = req.getParameter("action");
         switch (action) {
             case "add": {
-                String title = req.getParameter("title");
-                String content = req.getParameter("content");
+                String title = Encoding.encode(req.getParameter("title"));
+                String content = Encoding.encode(req.getParameter("content"));
                 repo.addArticle(new NewArticle(content, title));
                 RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
                 rd.forward(req, resp);
