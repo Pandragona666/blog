@@ -5,6 +5,7 @@ import entity.Article;
 import entity.ArticleEntity;
 import entity.NewArticle;
 import helper.Encoding;
+import helper.Parse;
 import io.vavr.collection.List;
 import service.ArticleRepository;
 
@@ -48,11 +49,11 @@ public class ArticleServlet extends HttpServlet {
             }
             break;
             case "delete": {
-                long id = Long.parseLong(req.getParameter("id"));
-                repo.remove(id);
+//                long id = Long.parseLong(req.getParameter("id"));
+//                repo.remove(id);
+                Parse.parseLong(req.getParameter("id")).ifPresent(id -> repo.remove(id));
                 req.setAttribute("articles", repo.getAll().asJava());
-                RequestDispatcher rd = req.getRequestDispatcher("view_articles.jsp");
-                rd.forward(req, resp);
+                resp.sendRedirect("article?action=viewAll");
             }
             break;
             case "add": {
