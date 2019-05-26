@@ -1,12 +1,9 @@
 package servlet;
 
 import dao.ArticleDaoJPA;
-import entity.Article;
-import entity.ArticleEntity;
 import entity.NewArticle;
 import helper.Encoding;
 import helper.Parse;
-import io.vavr.collection.List;
 import service.ArticleRepository;
 
 import javax.persistence.EntityManagerFactory;
@@ -22,6 +19,14 @@ import java.io.IOException;
 @WebServlet(urlPatterns = "/article")
 public class ArticleServlet extends HttpServlet {
 
+    public static final String ACTION_VIEW_ALL = "viewAll";
+    public static final String ACTION_VIEW = "view";
+    public static final String ACTION_DELETE = "delete";
+    public static final String ACTION_ADD = "add";
+    public static final String ACTION = "action";
+    public static final String INDEX = "index";
+    public static final String CHANGE_TITLE = "update";
+    public static final String UPDATE = "update";
     private ArticleRepository repo;
 
 
@@ -33,15 +38,15 @@ public class ArticleServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String action = req.getParameter("action");
+        String action = req.getParameter(ACTION);
         switch (action) {
-            case "viewAll": {
+            case ACTION_VIEW_ALL: {
                 req.setAttribute("articles", repo.getAll().asJava());
                 RequestDispatcher rd = req.getRequestDispatcher("view_articles.jsp");
                 rd.forward(req, resp);
             }
             break;
-            case "view": {
+            case ACTION_VIEW: {
                 Parse.parseLong(req.getParameter("id"))
                         .ifPresent(id -> repo.get(id)
                                 .ifPresent(a -> req.setAttribute("article", a)));
@@ -49,25 +54,25 @@ public class ArticleServlet extends HttpServlet {
                 rd.forward(req, resp);
             }
             break;
-            case "delete": {
+            case ACTION_DELETE: {
 //                long id = Long.parseLong(req.getParameter("id"));
 //                repo.remove(id);
                 Parse.parseLong(req.getParameter("id")).ifPresent(id -> repo.remove(id));
                 req.setAttribute("articles", repo.getAll().asJava());
-                resp.sendRedirect("article?action=viewAll");
+                resp.sendRedirect("article?" + ACTION + "=" + ACTION_VIEW_ALL);
             }
             break;
-            case "add": {
+            case ACTION_ADD: {
                 RequestDispatcher rd = req.getRequestDispatcher("add_article.jsp");
                 rd.forward(req, resp);
             }
             break;
-            case "index": {
+            case INDEX: {
                 RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
                 rd.forward(req, resp);
             }
             break;
-            case "update": {
+            case CHANGE_TITLE: {
                 Parse.parseLong(req.getParameter("id"))
                         .ifPresent(id -> repo.get(id)
                         .ifPresent(a -> {
@@ -81,20 +86,20 @@ public class ArticleServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String action = req.getParameter("action");
+        String action = req.getParameter(ACTION);
         switch (action) {
-            case "add": {
+            case ACTION_ADD: {
                 String title = Encoding.encode(req.getParameter("title"));
                 String content = Encoding.encode(req.getParameter("content"));
                 repo.addArticle(new NewArticle(content, title));
-                resp.sendRedirect("article?action=viewAll");
+                resp.sendRedirect("article?" +  ACTION + "=" + ACTION_VIEW_ALL);
             }
             break;
-            case "update": {
+            case UPDATE: {
                 String title = Encoding.encode(req.getParameter("title"));
                 Parse.parseLong(req.getParameter("id"))
                         .ifPresent(id -> repo.changeTitle(id, title));
-                resp.sendRedirect("article?action=viewAll");
+                resp.sendRedirect("article?" +  ACTION + "=" + ACTION_VIEW_ALL);
             }
         }
     }

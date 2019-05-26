@@ -10,4 +10,15 @@
         id="Your_WebApp_ID"
         version="2.5">
   <display-name>Project Blog</display-name>
+
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>admin pages</web-resource-name>
+      <url-pattern>/user</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>user</role-name>
+    </auth-constraint>
+  </security-constraint>
+
 </web-app>
