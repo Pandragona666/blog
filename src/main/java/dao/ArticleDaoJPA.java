@@ -4,7 +4,9 @@ import entity.Article;
 import entity.ArticleEntity;
 import entity.NewArticle;
 import io.vavr.collection.List;
-
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import java.util.Optional;
@@ -12,6 +14,7 @@ import java.util.Optional;
 public class ArticleDaoJPA implements Dao<Article, NewArticle> {
 
     private EntityManager em;
+    List<Article> result;
 
     public ArticleDaoJPA(EntityManager em) {
         this.em = em;
@@ -21,9 +24,15 @@ public class ArticleDaoJPA implements Dao<Article, NewArticle> {
     public List<Article> getAll() {
         em.getTransaction().begin();
         Query query = em.createQuery("from ArticleEntity ");
-        List<Article> result = List.ofAll(query.getResultStream().map(e -> new Article((ArticleEntity) e)));
+        result = List.ofAll(query.getResultStream().map(e -> new Article((ArticleEntity) e)));
         em.getTransaction().commit();
         return result;
+    }
+
+
+    @Override
+    public int size() {
+        return result.size();
     }
 
     @Override

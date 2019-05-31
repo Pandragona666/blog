@@ -44,6 +44,11 @@ public class UserDaoJPA implements  Dao<User, NewUser> {
     }
 
     @Override
+    public int size() {
+        return 0;
+    }
+
+    @Override
     public void update(User obj) {
 
     }

@@ -23,6 +23,10 @@ public class ArticleRepository {
         return dao.getAll();
     }
 
+    public int size(){
+        return dao.size();
+    }
+
     public Optional<Article> get(long id) {
         return dao.get(id);
     }
@@ -36,4 +40,5 @@ public class ArticleRepository {
                 .map(old -> new Article(old.id, title, old.content, old.created))
                 .ifPresent(dao::update);
     }
+
 }

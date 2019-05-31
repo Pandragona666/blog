@@ -15,22 +15,11 @@
         <a href="article?action=index">Main</a>
     </div>
     <div class = "container">
-        <%--<sql:setDataSource var="baza"
-                           driver="com.mysql.cj.jdbc.Driver"
-                           url="jdbc:mysql://localhost:3306/blog?serverTimezone=UTC"
-                           user="root"
-                           password="Sm0cz0J3st"/>
-
-        <sql:query var="articles" dataSource ="${baza}">
-            SELECT * FROM article
-        </sql:query>
-        --%>
-
 
         <table>
             <tr>
                 <th>
-                    Tytuł
+                    Tytuł artykułu
                 </th>
             </tr>
             <c:forEach var="article" items="${requestScope.articles}">
@@ -47,7 +36,6 @@
                 </tr>
             </c:forEach>
         </table>
-
     </div>
 </body>
 </html>

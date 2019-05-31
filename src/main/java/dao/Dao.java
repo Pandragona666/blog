@@ -16,4 +16,6 @@ public interface Dao<T, U> {
 
     void update(T obj);
 
+    int size();
+
 }
