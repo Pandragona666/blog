@@ -10,7 +10,7 @@ public class Paginator {
     public void configure(int pageSize, int collectionSize){
         this.collectionSize = collectionSize;
         this.pageSize = pageSize;
-        if (currentStart > (collectionSize/pageSize)){
+        if (currentStart >= collectionSize){
             currentStart = 0;
         }
     }
