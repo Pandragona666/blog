@@ -2,13 +2,27 @@
 <html>
 <%@ include file="head.jspf"%>
 <body>
-<h2>Hello World!</h2>
-<nav>
-    <a href="article?action=viewAll">Lista artykułów</a>
-    <a href="article?action=viewShortList">Okrojona lista artykułów</a>
-    <a href="article?action=add">Dodaj</a>
-    <a href="user?action=add">Zarejestruj się</a>
-    <a href="user?action=viewAll">Użytkownicy</a>
-</nav>
+    <div class="container">
+        <h2>Hello World!</h2>
+    </div>
+    <div class="container">
+        <nav>
+            <ul>
+                <a href="article?action=viewAll">Lista artykułów</a>
+            </ul>
+            <ul>
+                <a href="article?action=viewShortList">Okrojona lista artykułów</a>
+            </ul>
+            <ul>
+                <a href="article?action=add">Dodaj</a>
+            </ul>
+            <ul>
+                <a href="user?action=add">Zarejestruj się</a>
+            </ul>
+            <ul>
+                <a href="user?action=viewAll">Użytkownicy</a>
+            </ul>
+        </nav>
+    </div>
 </body>
 </html>

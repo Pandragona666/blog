@@ -56,7 +56,7 @@ public class ArticleServlet extends HttpServlet {
             break;
             case ACTION_VIEW_ALL_SHORT_LIST: {
                 List<Article> articlesList = repo.getAll().asJava();
-                paginator.configure(articlesList.size(), PAGE_SIZE);
+                paginator.configure(PAGE_SIZE, articlesList.size());
                 preparePagination(req);
                 req.setAttribute("page", paginator.getPage());
                 req.setAttribute("articles", articlesList.stream().skip(paginator.getFrom()).limit(paginator.getTo()-paginator.getFrom()+1).collect(Collectors.toList()));
