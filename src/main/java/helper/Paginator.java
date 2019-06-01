@@ -45,7 +45,7 @@ public class Paginator {
     }
 
     public void lastPage(){
-        currentStart = getLastFrom();
+        currentStart = collectionSize%pageSize == 0 ? collectionSize - pageSize : getLastFrom();
     }
 
     public int getNextFrom() {
